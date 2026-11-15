@@ -1,0 +1,45 @@
+erDiagram
+ CATEGORIES ||--o{ PRODUCTS : contains
+ MANUFACTURERS ||--o{ PRODUCTS : makes
+ SUPPLIERS ||--o{ PRODUCTS : supplies
+ ROLES ||--o{ USERS : assigns
+ USERS ||--o{ ORDERS : places
+ PVZ ||--o{ ORDERS : receives
+ ORDERSTATUS ||--o{ ORDERS : tracks
+ ORDERS ||--o{ PRODORDERS : includes
+ PRODUCTS ||--o{ PRODORDERS : appears_in
+ CATEGORIES { int id PK
+ varchar name }
+ MANUFACTURERS { int id PK
+ varchar name }
+ SUPPLIERS { int id PK
+ varchar name }
+ PRODUCTS { int id PK
+ varchar article UK
+ varchar name
+ decimal price
+ int category_id FK
+ int manufacturer_id FK
+ int supplier_id FK }
+ ROLES { int id PK
+ varchar name }
+ USERS { int id PK
+ varchar login UK
+ int role_id FK }
+ PVZ { int id PK
+ varchar postcode
+ varchar city
+ varchar street
+ varchar house }
+ ORDERSTATUS { int id PK
+ varchar name }
+ ORDERS { int id PK
+ date order_date
+ date delivery_date
+ int pvz_id FK
+ int user_id FK
+ int status_id FK }
+ PRODORDERS { int id PK
+ int order_id FK
+ int product_id FK
+ int qty }
